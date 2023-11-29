@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+    <style>
+        #formDataDisplay {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="myForm">
+        <!-- Two text fields - Name and Email -->
+        <input id="name" type="text" placeholder="Name" value=""><br><br>
+        <input id="email" type="email" placeholder="Email" value=""><br><br>
+
+        <!-- Two radio buttons for Gender - Male and Female -->
+        <label for="male">Male</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="female">Female</label>
+        <input type="radio" id="female" name="gender" value="Female"><br><br>
+
+        <!-- Submit button -->
+        <input type="button" value="Submit" onclick="displayFormData()">
+    </form>
+
+    <!-- Display form data -->
+    <div id="formDataDisplay"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function displayFormData() {
+            // Get form data
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var gender = $('input[name="gender"]:checked').val();
+
+            // Display form data with animation
+            var displayDiv = $('#formDataDisplay');
+            displayDiv.html('<h2>Form Data:</h2>' +
+                '<p><strong>Name:</strong> ' + name + '</p>' +
+                '<p><strong>Email:</strong> ' + email + '</p>' +
+                '<p><strong>Gender:</strong> ' + (gender ? gender : 'Not specified') + '</p>');
+
+            // Apply CSS modifications
+            displayDiv.css({
+                'font-family': 'Arial',
+                'border': '2px solid black',
+                'background-color': '#e0e0e0'
+            });
+
+            // Fade in the form data
+            displayDiv.fadeIn();
+
+            // Slide up the form data on mouseover
+            displayDiv.mouseover(function () {
+                $(this).slideUp();
+            });
+        }
+    </script>
+</body>
+
+</html>
